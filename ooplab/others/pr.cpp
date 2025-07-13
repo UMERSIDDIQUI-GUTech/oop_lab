@@ -1,64 +1,65 @@
-// Create a class TimedCounter with the following:
-// ● Private attributes:
-// ○ counter (int), maxLimit (int), resetInterval (in seconds)
-// ● Public:
-// ○ Constructor that sets all values; if maxLimit is less than 1, default it to 10
-// ○ Method Increment() increases the counter unless it has reached maxLimit
-// ○ Method ResetIfDue(int secondsElapsed) → resets counter if secondsElapsed >=
-// resetInterval
-// ○ Getters for counter and maxLimit, but no setter for maxLimit
-
-// Bonus:
-// Why should maxLimit be read-only after construction? What OOP principle does this follow?
-
-
-#include <iostream>
-#include <string>   
+#include<iostream>
+#include <cstring>
 using namespace std;
-class TimedCounter {
-private:
-    int counter;
-    int maxLimit;
-    int resetInterval;
+class resume
+{
+    char *name;
+    char *skills;
+
 public:
-    // Constructor
-    TimedCounter(int limit, int interval) {
-        maxLimit = (limit < 1) ? 10 : limit; // Default to 10 if limit < 1
-        resetInterval = interval;
-        counter = 0;
+
+    resume() : name(nullptr), skills(nullptr){}
+
+    resume(const char *n, const char *s)
+    {
+        name = new char[strlen(n + 1)];
+        strcpy(name, n);
+        
+        skills = new char[strlen(s + 1)];
+        strcpy(skills, s);
     }
 
-    // Increment method
-    void Increment() {
-        if (counter < maxLimit) {
-            counter++;
-        }
+    resume(const resume &original)
+    {
+        name = new char[strlen(original.name + 1)];
+        strcpy(name,original.name);
+        
+        skills = new char[strlen(original.skills + 1)];
+        strcpy(skills,original.skills);
     }
 
-    // ResetIfDue method
-    void ResetIfDue(int secondsElapsed) {
-        if (secondsElapsed >= resetInterval) {
-            counter = 0;
-        }
+    void updateName(const char *n){
+        name = new char[strlen(n + 1)];
+        strcpy(name, n);
     }
 
-    // Getters
-    int getCounter() const {
-        return counter;
+    void displayDetails(){
+        cout << name << " : " << skills << endl;
     }
 
-    int getMaxLimit() const {
-        return maxLimit;
+    ~resume() {
+        delete[] name;
+        delete[] skills;
+        cout << "heap memory khalli walli\n";
     }
 };
-int main() {
-    TimedCounter tc(5, 10); // maxLimit = 5, resetInterval = 10 seconds
-    tc.Increment();
-    tc.Increment();
-    cout << "Counter: " << tc.getCounter() << endl; // Should print 2
 
-    tc.ResetIfDue(12); // Reset due to 12 seconds elapsed
-    cout << "Counter after reset: " << tc.getCounter() << endl; // Should print 0
+int main()
+{
+    resume r1("ahsan" , "prompt engineer");
+    resume r2 = r1;
+    
+    cout << "Initial r1 and r2 values :\n";
+
+    r1.displayDetails();
+    r2.displayDetails();
+    
+    r1.updateName("jain");
+    
+    cout << "\nr1 and r2 values after change :\n";
+
+    r1.displayDetails();
+    r2.displayDetails();
 
     return 0;
 }

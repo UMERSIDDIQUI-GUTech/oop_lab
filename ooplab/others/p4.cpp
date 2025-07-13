@@ -1,50 +1,33 @@
-// 5: Design an inheritance structure for a grocery shopping system. The base class
-// should be Item, and the derived classes should be FoodItem and NonFoodItem.
-// ● The FoodItem class should have a method calculateDiscount().
-// ● The NonFoodItem class should have a method applyTax().
-// Create instances of both FoodItem and NonFoodItem and test the methods.
-
+// Write a class Point with x and y as private members. Implement a default copy
+// constructor and demonstrate copying one object to another.
 
 #include <iostream>
-#include <string>
 using namespace std;
-class Item {
-    private:
-        string name;
-        float price;
-    public:
-        Item(string n, float p) : name(n), price(p) {}
-        string getName() {
-            return name;
-        }
-        float getPrice() {
-            return price;
-        }
-};
-class FoodItem : public Item {
-    private:
-        float discount;
-    public:
-        FoodItem(string n, float p, float d) : Item(n, p), discount(d) {}
-        float calculateDiscount() {
-            return getPrice() * (discount / 100);
-        }
-};
-class NonFoodItem : public Item {
-    private:
-        float tax;
-    public:
-        NonFoodItem(string n, float p, float t) : Item(n, p), tax(t) {}
-        float applyTax() {
-            return getPrice() * (tax / 100);
-        }
+class Point {
+private:
+    string x;
+    int y;      
+public:
+    // Default copy constructor 
+    Point(const Point &p) {
+        x = p.x;  // Copy x from the source object
+        y = p.y;  // Copy y from the source object
+    }
+    // Parameterized constructor
+    Point(string a, int b) {
+        x = a;  // Initialize x with the provided string
+        y = b;  // Initialize y with the provided integer
+    }
+    // Method to display the values of x and y
+    void display() {
+        cout << "Name: " << x << endl;  // Display the value of x
+        cout << "Roll No: " << y << endl;  // Display the value of y
+    }
 };
 int main() {
-    FoodItem apple("Apple", 1.0, 10); // 10% discount
-    NonFoodItem soap("Soap", 2.0, 5); // 5% tax
-
-    cout << "Food Item: " << apple.getName() << ", Price: $" << apple.getPrice() << ", Discount: $" << apple.calculateDiscount() << endl;
-    cout << "Non-Food Item: " << soap.getName() << ", Price: $" << soap.getPrice() << ", Tax: $" << soap.applyTax() << endl;
-
-    return 0;
+    Point p1("Umer", 90);  // Create an object p1 with name "Umer" and roll number 90
+    Point p2 = p1;         // Use the copy constructor to create p2 as a copy of p1
+    p1.display();          // Display the values of p1
+    p2.display();          // Display the values of p2
+    return 0;              // Return 0 to indicate successful execution
 }
