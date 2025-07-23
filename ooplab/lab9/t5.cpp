@@ -20,6 +20,7 @@ void printNames(const Student& s, const Teacher& t) {
     cout << "Student: " << s.name << endl;
 
     cout << "Teacher: " << t.name << endl;
+    
 }
 int main() {
     Student s("Bablu");
