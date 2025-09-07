@@ -35,7 +35,7 @@ TimedCounter(int maxlim, int c , int ri){
     }
 };
 int main(){
-    TimedCounter t1(10 , 0,12);
+    TimedCounter t1(10 , 0 , 7);
     cout << t1.getCounter() << endl;
     cout << t1.getmaxLim()<< endl;
     t1.increment();

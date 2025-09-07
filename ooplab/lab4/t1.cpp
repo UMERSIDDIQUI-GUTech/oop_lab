@@ -23,20 +23,20 @@ class Manager : public Employee{
         cout << " We have a meeting at 12 !" << endl;
     }
 };
-class Developer : public Employee {
+class Developer : public Employee{
     public : 
     void writecode(){
         cout << " Write a cpp code " << endl;
     }
-};
+    };
 int main(){
     Employee e;
     Manager m;
     Developer d;
-    e.work();
-m.work();
-    d.work();
+    // e.work();
     d.writecode();
+    d.work();
     m.conductmeeting();
+    m.work();
     return 0;
 }
